@@ -34,14 +34,25 @@ function checkCashRegister(price, cash, cid) {
                     }
 
                 remval -= (i - 1) * facevalue; // to get a new remval for next loop
+                remval = Math.round(remval*100) / 100; //to resolve java calculation decimal error
               }
+          
+          //to distinguish between solution c & aii
+          if (remval > 0) {return {status: "INSUFFICIENT_FUNDS", change: []};} //solution of aii
 
+              else { //solution of c
+                      let billnamearr = Object.keys(changeobj); // to get the name & length for next loop
+                      let changearr = []; // to put the answer in
 
-
+                      for (let k = 0; k < billnamearr.length - 1; k++) //make the changearr the format required
+                          {
+                            let temparr = [billnamearr[k],changeobj[billnamearr[k]]];
+                            changearr.push(temparr);
+                          }
+                      
+                      return {status: "OPEN", change: changearr}; //return the answer
+                   }
        }
-
-  
-  return change;
 }
 
 checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
