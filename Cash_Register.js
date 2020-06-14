@@ -21,11 +21,20 @@ function checkCashRegister(price, cash, cid) {
           let remval = change; //to be used in the loop
           let changeobj = {}; //to push the required answer into it
 
+          //method to get the desired answer
+          for (let j = bill.length -1; j >= 0; j--) //from highest to lowest
+              {
+                let i; //use to represent quantity needed of each bill/coin
+                let facevalue = currency[bill[j][0]]; //the facevalue of each bill.coin
+                let iquantity = bill[j][1] / facevalue; //how many bill/coin we have respectively
 
+                for (i = 1; i * facevalue <= remval && i <= iquantity; i++) // to get which bill needed and its total value
+                    {
+                      changeobj[bill[j][0]] = i * facevalue;
+                    }
 
-
-
-
+                remval -= (i - 1) * facevalue; // to get a new remval for next loop
+              }
 
 
 
