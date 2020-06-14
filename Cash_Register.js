@@ -9,8 +9,10 @@ function checkCashRegister(price, cash, cid) {
     {return {status: "CLOSED", change: cid};}
   //
 
+  //solution of ai: total cash < change due
+  if (cid.reduce((sum,element)=>sum+element[1],0) < change)
+  {return {status: "INSUFFICIENT_FUNDS", change: []};}
   //
-  
   
   
   return change;
