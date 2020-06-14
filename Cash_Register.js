@@ -10,10 +10,27 @@ function checkCashRegister(price, cash, cid) {
   //
 
   //solution of ai: total cash < change due
-  if (cid.reduce((sum,element)=>sum+element[1],0) < change)
+  else if (cid.reduce((sum,element)=>sum+element[1],0) < change)
   {return {status: "INSUFFICIENT_FUNDS", change: []};}
   //
   
+  //solution of aii & c
+  else {
+          let bill = cid.filter(element=>element[1] > 0 && currency[element[0]] <= change); //array containing only existing bill with face value less than change due
+
+          let remval = change; //to be used in the loop
+          let changeobj = {}; //to push the required answer into it
+
+
+
+
+
+
+
+
+
+       }
+
   
   return change;
 }
